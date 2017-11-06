@@ -2,13 +2,13 @@
 
 Platform to visualize data from barrios
 
-Currently we are using data from:
+## Currently we are using data from:
 
 - Census 2012
 - Walkscore
 - SII
 
-Technologies:
+## Technologies:
 
 - R
 - Shiny
@@ -16,7 +16,7 @@ Technologies:
 - Leaflet
 - Mapbox
 
-Barrios in database:
+## Barrios in database:
 
 | ID                         | BARRIO                                        | CIUDAD                      | COMUNA        |
 |----------------------------|-----------------------------------------------|-----------------------------|---------------|
@@ -53,7 +53,7 @@ Barrios in database:
 | 31                         | Padre Hurtado (CCSS)                          | Temuco - Padre Las Casas    | Temuco        |
 | 32                         | Las Quilas                                    | Temuco - Padre Las Casas    | Temuco        |
 
-¿How data inside databases is organized?
+## ¿How data inside databases is organized?
 
 ```
 > head(readRDS("accesibility_score_final_15.RDS"))
@@ -73,4 +73,16 @@ Barrios in database:
 | value  | Score of the indicator         |
 | d      | Barrio's name                  |
 
+## Hey! In your code you have a hidden data.frame to specify the legend and codenames of databases!
 
+Yes I have one and I'm using it because I'm lazy to externalize the data.frame. In a future version and when the amount of indicators change I'll add a external dataset to add custom parameters.
+
+## What's the procedure to add a new variable?
+
+- First you have to set up a database using the specifications above
+- Then edit the hidden data.frames and choose a view (at the moment I have 3)
+
+## What's the procedure to add a new barrios?
+
+- First you have to download the shapes and load everything in R
+- Add your current barrios file, and run the scripts to join
