@@ -20,8 +20,8 @@ Barrios in database:
 
 | ID                         | BARRIO                                        | CIUDAD                      | COMUNA        |
 |----------------------------|-----------------------------------------------|-----------------------------|---------------|
-| 1                          | Barrio Amanecer                               | Temuco                      | Temuco        |
-| 2                          | Barrio Estación                               | Temuco                      | Temuco        |
+| 1                          | Barrio Amanecer                               | Temuco - Padre Las Casas    | Temuco        |
+| 2                          | Barrio Estación                               | Temuco - Padre Las Casas    | Temuco        |
 | 3                          | Camilo Henriquez                              | Gran Concepción             | Concepción    |
 | 4                          | Fundo El Carmen                               | Temuco                      | Temuco        |
 | 5                          | Lomas de San Sebastian                        | Gran Concepción             | Concepción    |
@@ -52,3 +52,25 @@ Barrios in database:
 | 30                         | Leonera 2                                     | Gran Concepción             | Chiguayante   |
 | 31                         | Padre Hurtado (CCSS)                          | Temuco - Padre Las Casas    | Temuco        |
 | 32                         | Las Quilas                                    | Temuco - Padre Las Casas    | Temuco        |
+
+¿How data inside databases is organized?
+
+```
+> head(readRDS("accesibility_score_final_15.RDS"))
+           ID_W listo               d
+1 9112041001032    36 Barrio Amanecer
+2 9101171003040    75 Barrio Amanecer
+3 9101171003002    52 Barrio Amanecer
+4 9101171001001    54 Barrio Amanecer
+5 9101171003028    65 Barrio Amanecer
+6 9101171002002    80 Barrio Amanecer
+
+```
+
+| COLUMN | DESCRIPTION                    |
+|--------|--------------------------------|
+| ID_W   | Census code related to manzana |
+| value  | Score of the indicator         |
+| d      | Barrio's name                  |
+
+
