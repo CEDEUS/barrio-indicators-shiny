@@ -85,4 +85,4 @@ Yes I have one and I'm using it because I'm lazy to externalize the data.frame. 
 ## What's the procedure to add a new barrios?
 
 - First you have to download the shapes and load everything in R
-- Add your current barrios file, and run the scripts to join
+- Add your current barrios file, and run the scripts in add_new_barrios folder
