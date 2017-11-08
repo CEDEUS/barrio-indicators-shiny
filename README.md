@@ -86,3 +86,13 @@ Yes I have one and I'm using it because I'm lazy to externalize the data.frame. 
 
 - First you have to download the shapes and load everything in R
 - Add your current barrios file, and run the scripts in add_new_barrios folder
+
+## Roadmap
+
+TODO
+
+| ID | DESCRIPTION                    |
+|----|--------------------------------|
+| 1  | Add avaluo fiscal indicator    |
+
+
