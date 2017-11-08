@@ -91,8 +91,10 @@ Yes I have one and I'm using it because I'm lazy to externalize the data.frame. 
 
 TODO
 
-| ID | DESCRIPTION                    |
-|----|--------------------------------|
-| 1  | Add avaluo fiscal indicator    |
+| ID | DESCRIPTION                                             |
+|----|---------------------------------------------------------|
+| 1  | Add initial year in the year of contruction indicator   |
+| 1  | Add avaluo fiscal indicator                             |
+| 2  | Fix bugs on the platform                                |
 
 
