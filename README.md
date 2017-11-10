@@ -94,7 +94,8 @@ TODO
 | ID | DESCRIPTION                                             |
 |----|---------------------------------------------------------|
 | 1  | Add initial year in the year of contruction indicator   |
-| 1  | Add avaluo fiscal indicator                             |
-| 2  | Fix bugs on the platform                                |
+| 2  | Add avaluo fiscal indicator                             |
+| 3  | Fix bugs on the platform                                |
+| 4  | Add indicator of cars by housing                        |
 
 
