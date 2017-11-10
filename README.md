@@ -57,7 +57,7 @@ Platform to visualize data from barrios
 
 ```
 > head(readRDS("accesibility_score_final_15.RDS"))
-           ID_W listo               d
+           ID_W value               d
 1 9112041001032    36 Barrio Amanecer
 2 9101171003040    75 Barrio Amanecer
 3 9101171003002    52 Barrio Amanecer
