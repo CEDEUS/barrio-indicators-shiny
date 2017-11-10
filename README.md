@@ -93,9 +93,11 @@ TODO
 
 | ID | DESCRIPTION                                             |
 |----|---------------------------------------------------------|
-| 1  | Add initial year in the year of contruction indicator   |
-| 2  | Add avaluo fiscal indicator                             |
-| 3  | Fix bugs on the platform                                |
-| 4  | Add indicator of cars by housing                        |
+| 1  | Add initial year in the year of construction indicator  |
+| 2  | Add last year in the year of construction indicator     |
+| 3  | Add avaluo fiscal indicator                             |
+| 4  | Fix bugs on the platform                                |
+| 5  | Add indicator of cars by housing                        |
+| 6  | Count houses in every manzana                           |
 
 
