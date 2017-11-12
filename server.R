@@ -87,19 +87,12 @@ function(input, output, session) {
   })
 
 # Setting up an observer
-
-  observeEvent({c(input$VarU,input$BarrioSelection,input$CiudadSelection)}, { 
+  
+  observeEvent({c(input$VarU,input$BarrioSelection)},{
     
     VarList <- data.frame(var=c("% Viviendas de buena calidad","% Mujeres trabajando","% Empleados en la misma comuna","% Acceso a tecnologias de la información","Cercanía a Areas Verdes","Caminabilidad a servicios urbanos - 10 min - 1.25 m/s","Caminabilidad a servicios urbanos - 15 min - 1.38 m/s","Mediana de años de construcción"),db=c("matr","mujt","empl","acte","aav","acc","acc2","acntr"),legend=c(1,1,1,1,2,1,1,3))
     
     db <- eval(as.name(as.character(VarList[match(input$VarU,VarList$var),]$db)))
-
-    # Color palettess
-
-    palette <- colorBin(viridis_pal()(11), 
-                        bins = c(0,10, 20, 30, 40, 50, 60, 70, 80, 90, 100),na.color = "#FFFFFF00")
-    palette.contru <- colorBin(viridis_pal()(11), 
-                                bins = c(0, 1920.0, 1940.0,1950.0, 1960.0, 1970.0, 1980.0, 1990.0, 2000.0, 2010.0, 2020.0), na.color = "#FFFFFF00")
     
     # Getting data
     
@@ -152,12 +145,7 @@ function(input, output, session) {
       leaflet(filter(shape,BARRIO == input$BarrioSelection)) %>% 
         addTiles(urlTemplate = "https://api.mapbox.com/styles/v1/robsalasco/cizaf21t600762rmu7spm9p06/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoicm9ic2FsYXNjbyIsImEiOiJjaWcxbzh1bjAxMHhodXdsdnczZ28xOHc1In0.WkFivOlHKIMwx30ssZorBw",attribution = 'Mapa por <a href="http://www.mapbox.com/">Mapbox</a> | Aplicación por <a href="mailto:rosalasATuc.cl">Roberto Salas</a>') 
     })
-    
-  })
 
-  # Subset
-  
-  observeEvent({c(input$VarU,input$BarrioSelection)},{
     VarList <- data.frame(var=c("% Viviendas de buena calidad","% Mujeres trabajando","% Empleados en la misma comuna","% Acceso a tecnologias de la información","Cercanía a Areas Verdes","Caminabilidad a servicios urbanos - 10 min - 1.25 m/s","Caminabilidad a servicios urbanos - 15 min - 1.38 m/s","Mediana de años de construcción"),db=c("matr","mujt","empl","acte","aav","acc","acc2","acntr"),legend=c(1,1,1,1,2,1,1,3))
     state_popup <- paste0(round(subset(shape,BARRIO == input$BarrioSelection)$value,2),sep="")
 
