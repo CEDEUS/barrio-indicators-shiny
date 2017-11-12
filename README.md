@@ -91,13 +91,14 @@ Yes I have one and I'm using it because I'm lazy to externalize the data.frame. 
 
 TODO
 
-| ID | DESCRIPTION                                             |
-|----|---------------------------------------------------------|
-| 1  | Add initial year in the year of construction indicator  |
-| 2  | Add last year in the year of construction indicator     |
-| 3  | Add avaluo fiscal indicator                             |
-| 4  | Fix bugs on the platform                                |
-| 5  | Add indicator of cars by housing                        |
-| 6  | Count houses in every manzana                           |
+| ID | DESCRIPTION                                             | ESTIMATED      |
+|----|---------------------------------------------------------|----------------|
+| 1  | Add initial year in the year of construction indicator  | ON IT          |
+| 2  | Add last year in the year of construction indicator     | ON IT          |
+| 3  | Add avaluo fiscal indicator                             | 17-11-2017     |
+| 4  | Fix bugs on the platform                                | 24-11-2017     |
+| 5  | Add indicator of cars by housing                        | 01-12-2017     |
+| 6  | Count houses in every manzana                           | 08-12-2017     |
+| 7  | Add dropdown to select location                         | 15-12-2017     |
 
 
