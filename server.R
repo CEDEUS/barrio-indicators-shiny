@@ -72,12 +72,14 @@ function(input, output, session) {
 # Adding data to dropdown's
 
   output$Ciudad <- renderUI({
-    ciudadesList <- unique(barrios_m$CIUDAD)
+    ciudadesList <- unique(barrios_p@data$CIUDAD)
     selectInput("CiudadSelection", "Ciudad", choices = ciudadesList, selected = ciudadesList[1])
   })
   
   output$Barrio <- renderUI({
-    routeNums <- unique(barrios_m$BARRIO)
+    req(input$CiudadSelection)
+    filtered <- filter(barrios_p@data, CIUDAD == input$CiudadSelection)
+    routeNums <- filtered$BARRIO
     selectInput("BarrioSelection", "Barrio", choices = routeNums, selected = routeNums[1])
   })
   
@@ -89,6 +91,9 @@ function(input, output, session) {
 # Setting up an observer
   
   observeEvent({c(input$VarU,input$BarrioSelection)},{
+
+    req(input$VarU)
+    req(input$BarrioSelection)
     
     VarList <- data.frame(var=c("% Viviendas de buena calidad","% Mujeres trabajando","% Empleados en la misma comuna","% Acceso a tecnologias de la información","Cercanía a Areas Verdes","Caminabilidad a servicios urbanos - 10 min - 1.25 m/s","Caminabilidad a servicios urbanos - 15 min - 1.38 m/s","Mediana de años de construcción"),db=c("matr","mujt","empl","acte","aav","acc","acc2","acntr"),legend=c(1,1,1,1,2,1,1,3))
     
@@ -171,35 +176,44 @@ function(input, output, session) {
                     color = '#444444',
                     fillOpacity = 1,
                     fillColor = ~palette(value),
-                    popup = state_popup,stroke = TRUE) %>% 
+                    popup = state_popup,stroke = TRUE, group = "Variable") %>% 
         addPolygons(data = barrios_p %>% filter(BARRIO == input$BarrioSelection),
-                    weight = 4, color = 'red', fillOpacity = 0, fillColor = '#000000')%>% addLegend("bottomright", pal = palette, values = ~value,
+                    weight = 4, color = 'red', fillOpacity = 0, fillColor = '#000000', group = "Poligono") %>% addLegend("bottomright", pal = palette, values = ~value,
                                   title = "",
                                   labFormat = labelFormat(suffix = "%"),
-                                  opacity = 1)}
+                                  opacity = 1) %>% 
+        addLayersControl(overlayGroups = c("Variable", "Poligono"),
+                         options = layersControlOptions(collapsed = T))
+    } 
     else if (VarList[match(input$VarU,VarList$var),]$legend == 2)
     {proxy %>% fitBounds(lng1 = bbox(datamap)[[3]],lat1 = bbox(datamap)[[4]], lng2 = bbox(datamap)[[1]],lat2 = bbox(datamap)[[2]]) %>% 
         addPolygons(weight = 0.5,
                     color = '#444444',
                     fillOpacity = 1,
                     fillColor = ~palette(value),
-                    popup = state_popup,stroke = TRUE) %>% 
+                    popup = state_popup,stroke = TRUE, group = "Variable") %>% 
         addPolygons(data = barrios_p %>% filter(BARRIO == input$BarrioSelection),
-                    weight = 4, color = 'red', fillOpacity = 0, fillColor = '#000000')%>% addLegend("bottomright", colors = viridis_pal()(2), values = ~value,
+                    weight = 4, color = 'red', fillOpacity = 0, fillColor = '#000000', group = "Poligono") %>% addLegend("bottomright", colors = viridis_pal()(2), values = ~value,
                          title = "",
                          labels= c("No","Si"),
-                         opacity = 1)}
+                         opacity = 1) %>% 
+        addLayersControl(overlayGroups = c("Variable", "Poligono"),
+                         options = layersControlOptions(collapsed = T))
+    } 
     else if (VarList[match(input$VarU,VarList$var),]$legend == 3)
     {proxy %>% fitBounds(lng1 = bbox(datamap)[[3]],lat1 = bbox(datamap)[[4]], lng2 = bbox(datamap)[[1]],lat2 = bbox(datamap)[[2]]) %>%
         addPolygons(weight = 0.5,
                     color = '#444444',
                     fillOpacity = 1,
                     fillColor = ~palette.contru(value),
-                    popup = state_popup,stroke = TRUE) %>% 
+                    popup = state_popup,stroke = TRUE, group = "Variable") %>% 
         addPolygons(data = barrios_p %>% filter(BARRIO == input$BarrioSelection),
-                    weight = 4, color = 'red', fillOpacity = 0, fillColor = '#000000')%>% addLegend("bottomright", pal = palette.contru, values = ~value,
+                    weight = 4, color = 'red', fillOpacity = 0, fillColor = '#000000', group = "Poligono") %>% addLegend("bottomright", pal = palette.contru, values = ~value,
                          title = "",
-                         opacity = 1)}
+                         opacity = 1) %>% 
+        addLayersControl(overlayGroups = c("Variable", "Poligono"),
+                         options = layersControlOptions(collapsed = T))
+    } 
   })
   
   # Credits
