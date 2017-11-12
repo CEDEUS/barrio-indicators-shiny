@@ -47,7 +47,8 @@ acte <- readRDS("Data/accesotecnologia.RDS")
 aav <- readRDS("Data/aav.RDS")
 acc <- readRDS("Data/accesibility_score_final.RDS")
 acc2 <- readRDS("Data/accesibility_score_final_15.RDS")
-acntr <- readRDS("Data/anoconstruccion.RDS")
+acntrmin <- readRDS("Data/anoconstruccion_min.RDS")
+acntrmax <- readRDS("Data/anoconstruccion_max.RDS")
 
 #Fix encoding
 
@@ -63,7 +64,8 @@ acte <- fix.encoding(acte)
 aav <- fix.encoding(aav)
 acc <- fix.encoding(acc)
 acc2 <- fix.encoding(acc2)
-acntr <- fix.encoding(acntr)
+acntrmin <- fix.encoding(acntrmin)
+acntrmax <- fix.encoding(acntrmax)
 
 # Shiny starts here
 
@@ -84,7 +86,14 @@ function(input, output, session) {
   })
   
   output$Variable <- renderUI({
-    options <- c("% Viviendas de buena calidad","% Mujeres trabajando","% Empleados en la misma comuna","% Acceso a tecnologias de la información","Cercanía a Areas Verdes","Caminabilidad a servicios urbanos - 10 min - 1.25 m/s","Caminabilidad a servicios urbanos - 15 min - 1.38 m/s","Mediana de años de construcción")
+    options <- c("% Viviendas de buena calidad",
+                 "% Mujeres trabajando",
+                 "% Empleados en la misma comuna",
+                 "% Acceso a tecnologias de la información",
+                 "Cercanía a Areas Verdes","Caminabilidad a servicios urbanos - 10 min - 1.25 m/s",
+                 "Caminabilidad a servicios urbanos - 15 min - 1.38 m/s",
+                 "Mediana de años de construcción (Año mínimo)",
+                 "Mediana de años de construcción (Año máximo)")
     selectInput("VarU", "Variable", choices = options, selected = options[1])
   })
 
@@ -95,8 +104,18 @@ function(input, output, session) {
     req(input$VarU)
     req(input$BarrioSelection)
     
-    VarList <- data.frame(var=c("% Viviendas de buena calidad","% Mujeres trabajando","% Empleados en la misma comuna","% Acceso a tecnologias de la información","Cercanía a Areas Verdes","Caminabilidad a servicios urbanos - 10 min - 1.25 m/s","Caminabilidad a servicios urbanos - 15 min - 1.38 m/s","Mediana de años de construcción"),db=c("matr","mujt","empl","acte","aav","acc","acc2","acntr"),legend=c(1,1,1,1,2,1,1,3))
-    
+    VarList <- data.frame(var=c("% Viviendas de buena calidad",
+                                "% Mujeres trabajando",
+                                "% Empleados en la misma comuna",
+                                "% Acceso a tecnologias de la información",
+                                "Cercanía a Areas Verdes",
+                                "Caminabilidad a servicios urbanos - 10 min - 1.25 m/s",
+                                "Caminabilidad a servicios urbanos - 15 min - 1.38 m/s",
+                                "Mediana de años de construcción (Año mínimo)",
+                                "Mediana de años de construcción (Año máximo)"),
+                          db=c("matr","mujt","empl","acte","aav","acc","acc2","acntrmin","acntrmax"),
+                          legend=c(1,1,1,1,2,1,1,3,3))
+
     db <- eval(as.name(as.character(VarList[match(input$VarU,VarList$var),]$db)))
     
     # Getting data
@@ -151,7 +170,6 @@ function(input, output, session) {
         addTiles(urlTemplate = "https://api.mapbox.com/styles/v1/robsalasco/cizaf21t600762rmu7spm9p06/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoicm9ic2FsYXNjbyIsImEiOiJjaWcxbzh1bjAxMHhodXdsdnczZ28xOHc1In0.WkFivOlHKIMwx30ssZorBw",attribution = 'Mapa por <a href="http://www.mapbox.com/">Mapbox</a> | Aplicación por <a href="mailto:rosalasATuc.cl">Roberto Salas</a>') 
     })
 
-    VarList <- data.frame(var=c("% Viviendas de buena calidad","% Mujeres trabajando","% Empleados en la misma comuna","% Acceso a tecnologias de la información","Cercanía a Areas Verdes","Caminabilidad a servicios urbanos - 10 min - 1.25 m/s","Caminabilidad a servicios urbanos - 15 min - 1.38 m/s","Mediana de años de construcción"),db=c("matr","mujt","empl","acte","aav","acc","acc2","acntr"),legend=c(1,1,1,1,2,1,1,3))
     state_popup <- paste0(round(subset(shape,BARRIO == input$BarrioSelection)$value,2),sep="")
 
     # Loading palettes again (maybe I have to remove it)
