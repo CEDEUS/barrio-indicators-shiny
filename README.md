@@ -93,12 +93,12 @@ TODO
 
 | ID | DESCRIPTION                                             | ESTIMATED      |
 |----|---------------------------------------------------------|----------------|
-| 1  | Add initial year in the year of construction indicator  | ON IT          |
-| 2  | Add last year in the year of construction indicator     | ON IT          |
-| 3  | Add avaluo fiscal indicator                             | 17-11-2017     |
+| 1  | Add initial year in the year of construction indicator  | DONE           |
+| 2  | Add last year in the year of construction indicator     | DONE           |
+| 3  | Add avaluo fiscal indicator                             | DONE           |
 | 4  | Fix bugs on the platform                                | 24-11-2017     |
-| 5  | Add indicator of cars by housing                        | 01-12-2017     |
-| 6  | Count houses in every manzana                           | 08-12-2017     |
-| 7  | Add dropdown to select location                         | 15-12-2017     |
+| 5  | Add indicator of cars by housing                        | DONE           |
+| 6  | Count houses in every manzana                           | DONE           |
+| 7  | Add dropdown to select location                         | DONE           |
 
 
