@@ -49,6 +49,9 @@ acc <- readRDS("Data/accesibility_score_final.RDS")
 acc2 <- readRDS("Data/accesibility_score_final_15.RDS")
 acntrmin <- readRDS("Data/anoconstruccion_min.RDS")
 acntrmax <- readRDS("Data/anoconstruccion_max.RDS")
+vehiculos <- readRDS("Data/vehiculos.RDS")
+avaluo <- readRDS("Data/valuesii.RDS")
+personas <- readRDS("Data/numerodepersonas.RDS")
 
 #Fix encoding
 
@@ -66,6 +69,9 @@ acc <- fix.encoding(acc)
 acc2 <- fix.encoding(acc2)
 acntrmin <- fix.encoding(acntrmin)
 acntrmax <- fix.encoding(acntrmax)
+vehiculos <- fix.encoding(vehiculos)
+avaluo <- fix.encoding(avaluo)
+personas <- fix.encoding(personas)
 
 # Shiny starts here
 
@@ -93,7 +99,11 @@ function(input, output, session) {
                  "Cercanía a Areas Verdes","Caminabilidad a servicios urbanos - 10 min - 1.25 m/s",
                  "Caminabilidad a servicios urbanos - 15 min - 1.38 m/s",
                  "Mediana de años de construcción (Año mínimo)",
-                 "Mediana de años de construcción (Año máximo)")
+                 "Mediana de años de construcción (Año máximo)",
+                 "Presencia de vehiculos",
+                 "Avaluo",
+                 "Personas"
+                 )
     selectInput("VarU", "Variable", choices = options, selected = options[1])
   })
 
@@ -112,9 +122,13 @@ function(input, output, session) {
                                 "Caminabilidad a servicios urbanos - 10 min - 1.25 m/s",
                                 "Caminabilidad a servicios urbanos - 15 min - 1.38 m/s",
                                 "Mediana de años de construcción (Año mínimo)",
-                                "Mediana de años de construcción (Año máximo)"),
-                          db=c("matr","mujt","empl","acte","aav","acc","acc2","acntrmin","acntrmax"),
-                          legend=c(1,1,1,1,2,1,1,3,3))
+                                "Mediana de años de construcción (Año máximo)",
+                                "Presencia de vehiculos",
+                                "Avaluo",
+                                "Personas"),
+                          db=c("matr","mujt","empl","acte","aav","acc","acc2","acntrmin","acntrmax","vehiculos","avaluo","personas"),
+                          legend=c(1,1,1,1,2,1,1,3,3,1,4,5))
+    
 
     db <- eval(as.name(as.character(VarList[match(input$VarU,VarList$var),]$db)))
     
@@ -172,13 +186,20 @@ function(input, output, session) {
 
     state_popup <- paste0(round(subset(shape,BARRIO == input$BarrioSelection)$value,2),sep="")
 
-    # Loading palettes again (maybe I have to remove it)
+    # Loading palettes
     
     palette <- colorBin(viridis_pal()(11), 
                         bins = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100), na.color = "#FFFFFF00")
     
     palette.contru <- colorBin(viridis_pal()(11), 
                                 bins = c(0, 1920.0, 1940.0,1950.0, 1960.0, 1970.0, 1980.0, 1990.0, 2000.0, 2010.0, 2020.0),na.color = "#FFFFFF00")
+    
+    palette.avaluo <- colorBin(viridis_pal()(11), 
+                               bins = cbreaks(c(min(subset(shape,BARRIO == input$BarrioSelection)$value,na.rm = T), max(subset(shape,BARRIO == input$BarrioSelection)$value,na.rm = T)), pretty_breaks(9))$breaks, na.color = "#FFFFFF00")
+    
+    palette.personas <- colorBin(viridis_pal()(11), 
+                               bins = cbreaks(c(min(subset(shape,BARRIO == input$BarrioSelection)$value,na.rm = T), max(subset(shape,BARRIO == input$BarrioSelection)$value,na.rm = T)), pretty_breaks(9))$breaks, na.color = "#FFFFFF00")
+    
     
     # Subset
 
@@ -231,7 +252,35 @@ function(input, output, session) {
                          opacity = 1) %>% 
         addLayersControl(overlayGroups = c("Variable", "Poligono"),
                          options = layersControlOptions(collapsed = T))
-    } 
+    }
+    else if (VarList[match(input$VarU,VarList$var),]$legend == 4)
+    {proxy %>% fitBounds(lng1 = bbox(datamap)[[3]],lat1 = bbox(datamap)[[4]], lng2 = bbox(datamap)[[1]],lat2 = bbox(datamap)[[2]]) %>%
+        addPolygons(weight = 0.5,
+                    color = '#444444',
+                    fillOpacity = 1,
+                    fillColor = ~palette.avaluo(value),
+                    popup = state_popup,stroke = TRUE, group = "Variable") %>% 
+        addPolygons(data = barrios_p %>% filter(BARRIO == input$BarrioSelection),
+                    weight = 4, color = 'red', fillOpacity = 0, fillColor = '#000000', group = "Poligono") %>% addLegend("bottomright", pal = palette.avaluo, values = ~value,
+                                                                                                                         title = "",
+                                                                                                                         opacity = 1) %>% 
+        addLayersControl(overlayGroups = c("Variable", "Poligono"),
+                         options = layersControlOptions(collapsed = T))
+    }
+    else if (VarList[match(input$VarU,VarList$var),]$legend == 5)
+    {proxy %>% fitBounds(lng1 = bbox(datamap)[[3]],lat1 = bbox(datamap)[[4]], lng2 = bbox(datamap)[[1]],lat2 = bbox(datamap)[[2]]) %>%
+        addPolygons(weight = 0.5,
+                    color = '#444444',
+                    fillOpacity = 1,
+                    fillColor = ~palette.personas(value),
+                    popup = state_popup,stroke = TRUE, group = "Variable") %>% 
+        addPolygons(data = barrios_p %>% filter(BARRIO == input$BarrioSelection),
+                    weight = 4, color = 'red', fillOpacity = 0, fillColor = '#000000', group = "Poligono") %>% addLegend("bottomright", pal = palette.personas, values = ~value,
+                                                                                                                         title = "",
+                                                                                                                         opacity = 1) %>% 
+        addLayersControl(overlayGroups = c("Variable", "Poligono"),
+                         options = layersControlOptions(collapsed = T))
+    }     
   })
   
   # Credits
