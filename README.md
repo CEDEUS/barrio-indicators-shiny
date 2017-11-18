@@ -1,4 +1,7 @@
+
 # barrio-indicators-shiny
+
+![shot](/images/shot1.png)
 
 Platform to visualize data from barrios
 
