@@ -5,7 +5,7 @@
 
 Platform to visualize data from barrios
 
-## Currently we are using data from:
+## Currently using data from:
 
 - Census 2012
 - Walkscore
