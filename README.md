@@ -1,9 +1,14 @@
 
 # barrio-indicators-shiny
 
+Platform to visualize data from barrios
+
+[![license](https://img.shields.io/github/license/CEDEUS/barrio-indicators-shiny.svg)]()
+
+# Screenshot
+
 ![shot](/images/shot1.png)
 
-Platform to visualize data from barrios
 
 ## Currently using data from:
 
