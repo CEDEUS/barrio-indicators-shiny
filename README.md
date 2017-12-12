@@ -1,9 +1,15 @@
 
 # barrio-indicators-shiny
 
-![shot](/images/shot1.png)
+[![license](https://img.shields.io/github/license/CEDEUS/barrio-indicators-shiny.svg)]()
+[![license](https://img.shields.io/github/languages/top/CEDEUS/barrio-indicators-shiny.svg)]()
 
 Platform to visualize data from barrios
+
+# Screenshot
+
+![shot](/images/shot1.png)
+
 
 ## Currently using data from:
 
@@ -99,7 +105,7 @@ TODO
 | 1  | Add initial year in the year of construction indicator  | DONE           |
 | 2  | Add last year in the year of construction indicator     | DONE           |
 | 3  | Add avaluo fiscal indicator                             | DONE           |
-| 4  | Fix bugs on the platform                                | 24-11-2017     |
+| 4  | Fix bugs on the platform                                | DONE           |
 | 5  | Add indicator of cars by housing                        | DONE           |
 | 6  | Count houses in every manzana                           | DONE           |
 | 7  | Add dropdown to select location                         | DONE           |
