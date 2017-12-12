@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>How-the-app-works on Barrios Sustentables</title>
+    <link>/how-the-app-works/</link>
+    <description>Recent content in How-the-app-works on Barrios Sustentables</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/how-the-app-works/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How the app works</title>
+      <link>/how-the-app-works/how-the-application-works/</link>
+      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/how-the-app-works/how-the-application-works/</guid>
+      <description>1 - Loading databases The first section of the app before the initialization of the server load the databases
+#Loading required databases barrios_m &amp;lt;- readRDS(&amp;quot;Data/barrios_merged.RDS&amp;quot;) barrios_p &amp;lt;- readRDS(&amp;quot;Data/barrios_pil.RDS&amp;quot;) manzbarr &amp;lt;- readRDS(&amp;quot;Data/Manzanasbarriospiloto.RDS&amp;quot;) empl &amp;lt;- readRDS(&amp;quot;Data/empleabilidadmismacomuna.RDS&amp;quot;) matr &amp;lt;- readRDS(&amp;quot;Data/materialidad.RDS&amp;quot;) mujt &amp;lt;- readRDS(&amp;quot;Data/mujerestrabajando.RDS&amp;quot;) acte &amp;lt;- readRDS(&amp;quot;Data/accesotecnologia.RDS&amp;quot;) aav &amp;lt;- readRDS(&amp;quot;Data/aav.RDS&amp;quot;) acc &amp;lt;- readRDS(&amp;quot;Data/accesibility_score_final.RDS&amp;quot;) acc2 &amp;lt;- readRDS(&amp;quot;Data/accesibility_score_final_15.RDS&amp;quot;) acntrmin &amp;lt;- readRDS(&amp;quot;Data/anoconstruccion_min.RDS&amp;quot;) acntrmax &amp;lt;- readRDS(&amp;quot;Data/anoconstruccion_max.RDS&amp;quot;) vehiculos &amp;lt;- readRDS(&amp;quot;Data/vehiculos.RDS&amp;quot;) avaluo &amp;lt;- readRDS(&amp;quot;Data/valuesii.RDS&amp;quot;) personas &amp;lt;- readRDS(&amp;quot;Data/numerodepersonas.RDS&amp;quot;)  2 - Fixing encoding Then the encoding is fixed using an small function</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head lang="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+	<meta name="description" content="CEDEUS neighborhood statistics project">
+	<meta name="generator" content="Hugo 0.31.1" />
+	
+	<title>Getting Started &mdash; Barrios Sustentables</title>
+	
+	<link rel="stylesheet" href="/css/alabaster.css" type="text/css" />
+	<link rel="stylesheet" href="/css/highlight.css" type="text/css" />
+
+	
+
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+</head>
+
+	<body role="document">
+		<div class="document">
+			<div class="documentwrapper">
+				<div class="bodywrapper">
+					<div class="body" role="main">
+						
+	<h1>Getting Started</h1>
+	
+	
+
+<h2 id="installation">Installation</h2>
+
+<h3 id="install-r-and-rstudio">Install R and RStudio</h3>
+
+<p>The first dependency of the project is R because everything is made on it. All the development was done on a unix compatible system so you can expect some inconsistencies if you are gonna use this project on another box.</p>
+
+<pre><code># Example using a Ubuntu Trusty box
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+sudo add-apt-repository 'deb [arch=amd64,i386] https://cran.rstudio.com/bin/linux/ubuntu trusty/'
+sudo apt-get update
+sudo apt-get install r-base
+
+sudo apt-get install gdebi-core
+wget https://download1.rstudio.org/rstudio-1.1.383-i386.deb
+sudo gdebi rstudio-1.1.383-i386.deb
+
+# Using macOS
+
+brew install r
+brew cask install rstudio
+</code></pre>
+
+<h3 id="install-shiny">Install Shiny</h3>
+
+<p>Shiny is a web framework for R and you can install it using the standard method for getting the packages.</p>
+
+<pre><code>install.packages(&quot;shiny&quot;)
+</code></pre>
+
+<h3 id="install-project-dependencies">Install project dependencies</h3>
+
+<p>Once you have the standard environment to start shiny apps the next step is adding the related packages to the project.</p>
+
+<pre><code>install.packages(&quot;shinydashboard&quot;,
+                 &quot;leaflet&quot;,
+                 &quot;dplyr&quot;,
+                 &quot;spdplyr&quot;,
+                 &quot;viridis&quot;,
+                 &quot;reshape2&quot;)
+</code></pre>
+
+<h4 id="description-of-packages">Description of packages</h4>
+
+<ul>
+<li><em>shinydashboard</em> builds the UI and integrates the Twitter Bootstrap framework using a AdminLTE control panel template.</li>
+<li><em>leaflet</em> is the new standard method to show maps on the web. In the app adds the legends, layer controls, tiles from mapbox and shapes.</li>
+<li><em>dplyr</em> permits the operations over data.frames.</li>
+<li><em>spdplyr</em> adds support for spatial polygons to dplyr.</li>
+<li><em>viridis</em> is a nice color palette with good contrast.</li>
+<li><em>reshape2</em> add more operations over data.frames.</li>
+</ul>
+
+<p>Now you&rsquo;re ready to run the app locally! Just press the &ldquo;Run app!&rdquo; button in RStudio and boom!</p>
+
+
+
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+	<div class="sphinxsidebarwrapper">
+		<p class="logo">
+			<a href="/">
+				<img class="logo" src="/favicon-96x96.png" alt="Logo"/>
+				<h1 class="logo logo-name">Barrios Sustentables</h1>
+			</a>
+		</p>
+		
+		<p class="blurb">CEDEUS neighborhood statistics project</p>
+
+		
+
+	
+
+	
+
+	
+		
+
+		
+
+<h3>Navigation</h3>
+<ul>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/getting-started/">Getting Started</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/using-shiny-server/using-shiny-server/">Using Shiny Server</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/application-internals/application-internals/">Application Internals</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/how-the-app-works/how-the-application-works/">How the app works</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/indicators/indicators/">Indicators</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/barrios/barrios/">Barrios</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/">Foreword</a>
+	</li>
+	
+</ul>
+
+
+		
+
+	</div>
+</div>
+<div class="clearer"></div>
+</div>
+			<div class="footer">
+	&copy; 2017 <a href="https://www.cedeus.cl">CEDEUS</a>
+	
+</div>
+
+
+
+
+			
+
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+			<script>hljs.initHighlightingOnLoad();</script>
+			
+
+			
+		</div>
+	</body>
+</html>

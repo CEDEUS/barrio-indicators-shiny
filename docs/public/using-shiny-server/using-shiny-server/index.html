@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head lang="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+	<meta name="description" content="CEDEUS neighborhood statistics project">
+	<meta name="generator" content="Hugo 0.31.1" />
+	
+	<title>Using Shiny Server &mdash; Barrios Sustentables</title>
+	
+	<link rel="stylesheet" href="/css/alabaster.css" type="text/css" />
+	<link rel="stylesheet" href="/css/highlight.css" type="text/css" />
+
+	
+
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+</head>
+
+	<body role="document">
+		<div class="document">
+			<div class="documentwrapper">
+				<div class="bodywrapper">
+					<div class="body" role="main">
+						
+	<h1>Using Shiny Server</h1>
+	
+	
+
+<p>One of the most powerful features in R is the ability to run your app on a 24x7 server. In the following section I&rsquo;ll show you how to configure the Barrios Sustentanbles app on a Debian based environment using the open source version of Shiny Server.</p>
+
+<h2 id="server-requeriments">Server requeriments</h2>
+
+<p>Shiny and R are a resource hog, that&rsquo;s the reality, so you need a machine with at least 4 gigs for RAM to start this app. With Ubuntu or Debian installed we can start adding the packages.</p>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>On the CEDEUS server we have a restricted number of ports with internet exit so Shiny Server needs an special proxy setup using nginx if you have more than an app running on it.</p>
+</div>
+
+<h2 id="step-1-install-r-from-cran-repository">Step 1 - Install R from CRAN repository</h2>
+
+<pre><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+sudo add-apt-repository 'deb [arch=amd64,i386] https://cran.rstudio.com/bin/linux/ubuntu trusty/'
+sudo apt-get update
+sudo apt-get install r-base
+</code></pre>
+
+<h2 id="step-2-install-shiny-server">Step 2 - Install Shiny Server</h2>
+
+<pre><code>sudo apt-get install gdebi-core
+wget https://download3.rstudio.org/ubuntu-12.04/x86_64/shiny-server-1.5.6.875-amd64.deb
+sudo gdebi shiny-server-1.5.6.875-amd64.deb
+sudo service shiny-server start
+</code></pre>
+
+<h2 id="step-3-configuring-the-shiny-server">Step 3 - Configuring the Shiny Server</h2>
+
+<p>For this section I only have a trick&hellip; I&rsquo;m using the same user for the dev packages and running the app. The configuration file is located at <code>/etc/shiny-server/shiny-server.conf</code></p>
+
+<pre><code>run_as shiny;
+server {
+  listen 3838;
+  location / {
+    site_dir /srv/shiny-server;
+    log_dir /var/log/shiny-server;
+    directory_index off;
+    location /barriossust {
+      run_as rsalas;
+    }
+  }
+}
+</code></pre>
+
+<h2 id="step-4-adding-the-app-to-the-server">Step 4 - Adding the app to the server</h2>
+
+<p>Just copy the app folder to <code>/srv/shiny-server</code> directory.</p>
+
+
+
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+	<div class="sphinxsidebarwrapper">
+		<p class="logo">
+			<a href="/">
+				<img class="logo" src="/favicon-96x96.png" alt="Logo"/>
+				<h1 class="logo logo-name">Barrios Sustentables</h1>
+			</a>
+		</p>
+		
+		<p class="blurb">CEDEUS neighborhood statistics project</p>
+
+		
+
+	
+
+	
+
+	
+		
+
+		
+
+<h3>Navigation</h3>
+<ul>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/getting-started/">Getting Started</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/using-shiny-server/using-shiny-server/">Using Shiny Server</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/application-internals/application-internals/">Application Internals</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/how-the-app-works/how-the-application-works/">How the app works</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/indicators/indicators/">Indicators</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/barrios/barrios/">Barrios</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/">Foreword</a>
+	</li>
+	
+</ul>
+
+
+		
+
+	</div>
+</div>
+<div class="clearer"></div>
+</div>
+			<div class="footer">
+	&copy; 2017 <a href="https://www.cedeus.cl">CEDEUS</a>
+	
+</div>
+
+
+
+
+			
+
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+			<script>hljs.initHighlightingOnLoad();</script>
+			
+
+			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head lang="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+	<meta name="description" content="CEDEUS neighborhood statistics project">
+	<meta name="generator" content="Hugo 0.31.1" />
+	
+	<title>Indicators &mdash; Barrios Sustentables</title>
+	
+	<link rel="stylesheet" href="/css/alabaster.css" type="text/css" />
+	<link rel="stylesheet" href="/css/highlight.css" type="text/css" />
+
+	
+
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+</head>
+
+	<body role="document">
+		<div class="document">
+			<div class="documentwrapper">
+				<div class="bodywrapper">
+					<div class="body" role="main">
+						
+	<h1>Indicators</h1>
+	
+	
+
+<h2 id="a-look-inside-the-indicators-databases">A look inside the indicators databases</h2>
+
+<pre><code>&gt; head(readRDS(&quot;accesibility_score_final_15.RDS&quot;))
+           ID_W value               d
+1 9112041001032    36 Barrio Amanecer
+2 9101171003040    75 Barrio Amanecer
+3 9101171003002    52 Barrio Amanecer
+4 9101171001001    54 Barrio Amanecer
+5 9101171003028    65 Barrio Amanecer
+6 9101171002002    80 Barrio Amanecer
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>COLUMN</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ID_W</td>
+<td>Census code related to manzana</td>
+</tr>
+
+<tr>
+<td>value</td>
+<td>Score of the indicator</td>
+</tr>
+
+<tr>
+<td>d</td>
+<td>Barrio&rsquo;s name</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="how-to-add-a-new-indicator">How to add a new indicator</h2>
+
+<ul>
+<li>First you have to set up a database using the specifications above</li>
+<li>Then edit the hidden data.frames and choose a view (at the moment I have 3)</li>
+</ul>
+
+
+
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+	<div class="sphinxsidebarwrapper">
+		<p class="logo">
+			<a href="/">
+				<img class="logo" src="/favicon-96x96.png" alt="Logo"/>
+				<h1 class="logo logo-name">Barrios Sustentables</h1>
+			</a>
+		</p>
+		
+		<p class="blurb">CEDEUS neighborhood statistics project</p>
+
+		
+
+	
+
+	
+
+	
+		
+
+		
+
+<h3>Navigation</h3>
+<ul>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/getting-started/">Getting Started</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/using-shiny-server/using-shiny-server/">Using Shiny Server</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/application-internals/application-internals/">Application Internals</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/how-the-app-works/how-the-application-works/">How the app works</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/indicators/indicators/">Indicators</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/barrios/barrios/">Barrios</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/">Foreword</a>
+	</li>
+	
+</ul>
+
+
+		
+
+	</div>
+</div>
+<div class="clearer"></div>
+</div>
+			<div class="footer">
+	&copy; 2017 <a href="https://www.cedeus.cl">CEDEUS</a>
+	
+</div>
+
+
+
+
+			
+
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+			<script>hljs.initHighlightingOnLoad();</script>
+			
+
+			
+		</div>
+	</body>
+</html>

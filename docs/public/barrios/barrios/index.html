@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head lang="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+	<meta name="description" content="CEDEUS neighborhood statistics project">
+	<meta name="generator" content="Hugo 0.31.1" />
+	
+	<title>Barrios &mdash; Barrios Sustentables</title>
+	
+	<link rel="stylesheet" href="/css/alabaster.css" type="text/css" />
+	<link rel="stylesheet" href="/css/highlight.css" type="text/css" />
+
+	
+
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+</head>
+
+	<body role="document">
+		<div class="document">
+			<div class="documentwrapper">
+				<div class="bodywrapper">
+					<div class="body" role="main">
+						
+	<h1>Barrios</h1>
+	
+	
+
+<h2 id="database">Database</h2>
+
+<p>Currently we have 32 barrios on 6 cities</p>
+
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>BARRIO</th>
+<th>CIUDAD</th>
+<th>COMUNA</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>Barrio Amanecer</td>
+<td>Temuco - Padre Las Casas</td>
+<td>Temuco</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Barrio Estación</td>
+<td>Temuco - Padre Las Casas</td>
+<td>Temuco</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Camilo Henriquez</td>
+<td>Gran Concepción</td>
+<td>Concepción</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Fundo El Carmen</td>
+<td>Temuco - Padre Las Casas</td>
+<td>Temuco</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>Lomas de San Sebastian</td>
+<td>Gran Concepción</td>
+<td>Concepción</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>Villa Los Fundadores</td>
+<td>Valdivia</td>
+<td>Valdivia</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>Parque Krahmer</td>
+<td>Valdivia</td>
+<td>Valdivia</td>
+</tr>
+
+<tr>
+<td>8</td>
+<td>Sector Regional</td>
+<td>Valdivia</td>
+<td>Valdivia</td>
+</tr>
+
+<tr>
+<td>9</td>
+<td>Barrio Brasil</td>
+<td>Gran Santiago</td>
+<td>Santiago</td>
+</tr>
+
+<tr>
+<td>10</td>
+<td>Villa Codelco</td>
+<td>Copiapó</td>
+<td>Copiapó</td>
+</tr>
+
+<tr>
+<td>11</td>
+<td>Tierra Viva Oriente</td>
+<td>Copiapó</td>
+<td>Copiapó</td>
+</tr>
+
+<tr>
+<td>12</td>
+<td>El Llano</td>
+<td>Gran Coquimbo</td>
+<td>Coquimbo</td>
+</tr>
+
+<tr>
+<td>13</td>
+<td>Villa Vista Hermosa</td>
+<td>Gran Coquimbo</td>
+<td>La Serena</td>
+</tr>
+
+<tr>
+<td>14</td>
+<td>Barrio San Miguel</td>
+<td>Gran Santiago</td>
+<td>San Miguel</td>
+</tr>
+
+<tr>
+<td>15</td>
+<td>Barrio Las Lilas</td>
+<td>Gran Santiago</td>
+<td>Providencia</td>
+</tr>
+
+<tr>
+<td>16</td>
+<td>Barrio Jardin del Este</td>
+<td>Gran Santiago</td>
+<td>Vitacura</td>
+</tr>
+
+<tr>
+<td>17</td>
+<td>Barrio Plaza de Maipú</td>
+<td>Gran Santiago</td>
+<td>Maipú</td>
+</tr>
+
+<tr>
+<td>18</td>
+<td>Barrios Bajos</td>
+<td>Valdivia</td>
+<td>Valdivia</td>
+</tr>
+
+<tr>
+<td>19</td>
+<td>Guayacán</td>
+<td>Gran Coquimbo</td>
+<td>Coquimbo</td>
+</tr>
+
+<tr>
+<td>20</td>
+<td>Villa Esperanza</td>
+<td>Copiapó</td>
+<td>Copiapó</td>
+</tr>
+
+<tr>
+<td>21</td>
+<td>El Faro Parte Alta</td>
+<td>Gran Coquimbo</td>
+<td>Coquimbo</td>
+</tr>
+
+<tr>
+<td>22</td>
+<td>Juan XXIII</td>
+<td>Gran Coquimbo</td>
+<td>La Serena</td>
+</tr>
+
+<tr>
+<td>23</td>
+<td>Chorrillos</td>
+<td>Gran Santiago</td>
+<td>Independencia</td>
+</tr>
+
+<tr>
+<td>24</td>
+<td>Brasilia</td>
+<td>Gran Santiago</td>
+<td>San Miguel</td>
+</tr>
+
+<tr>
+<td>25</td>
+<td>El Mariscal</td>
+<td>Gran Santiago</td>
+<td>Puente Alto</td>
+</tr>
+
+<tr>
+<td>26</td>
+<td>U.V. 35 José María Caro</td>
+<td>Gran Santiago</td>
+<td>Lo Espejo</td>
+</tr>
+
+<tr>
+<td>27</td>
+<td>Pucará de Lasana</td>
+<td>Gran Santiago</td>
+<td>Quilicura</td>
+</tr>
+
+<tr>
+<td>28</td>
+<td>Juan González Huerta</td>
+<td>Gran Concepción</td>
+<td>Talcahuano</td>
+</tr>
+
+<tr>
+<td>29</td>
+<td>Cerro Verde Alto</td>
+<td>Gran Concepción</td>
+<td>Penco</td>
+</tr>
+
+<tr>
+<td>30</td>
+<td>Leonera 2</td>
+<td>Gran Concepción</td>
+<td>Chiguayante</td>
+</tr>
+
+<tr>
+<td>31</td>
+<td>Padre Hurtado (CCSS)</td>
+<td>Temuco - Padre Las Casas</td>
+<td>Temuco</td>
+</tr>
+
+<tr>
+<td>32</td>
+<td>Las Quilas</td>
+<td>Temuco - Padre Las Casas</td>
+<td>Temuco</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="how-to-add-a-new-barrio">How to add a new barrio?</h2>
+
+<ul>
+<li>First you have to download the shapes and load everything in R</li>
+<li>Add your current barrios file, and run the scripts in add_new_barrios folder</li>
+</ul>
+
+<h2 id="going-deep-in-the-three-stage-process">Going deep in the three stage process</h2>
+
+<p>The following example code adds four new barrios to the platform. First, creates a SpatialPolygonDataFrame with the old and new barrios.</p>
+
+<pre><code>library(tidyverse)
+library(rgdal)
+library(rgeos)
+library(sp)
+library(maptools)
+
+# You have to use the orig barrios file
+
+barrios_p &lt;- read_rds(&quot;orig/barrios_pil.RDS&quot;)
+
+# Setting up the projection
+
+crs &lt;- CRS(&quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +towgs84=0,0,0&quot;)
+
+# Loading the barrios (this is an example)
+
+br &lt;- readOGR(&quot;nuevos_barrios_shp/barrioamanecer.shp&quot;, &quot;barrioamanecer&quot;)
+cd &lt;- readOGR(&quot;nuevos_barrios_shp/barrioestacion.shp&quot;, &quot;barrioestacion&quot;)
+vo &lt;- readOGR(&quot;nuevos_barrios_shp/camilohenriquez.shp&quot;, &quot;camilohenriquez&quot;)
+el &lt;- readOGR(&quot;nuevos_barrios_shp/fundoelcarmen.shp&quot;, &quot;fundoelcarmen&quot;)
+
+# Join everything
+
+nbarrios &lt;- rbind(br,cd,vo,el)
+
+# Adding data to the shape
+
+nbarrios@data &lt;- read_delim(&quot;Id	BARRIO	CIUDAD	COMUNA
+0	Barrio Amanecer	Temuco	Temuco
+0	Barrio Estación	Temuco	Temuco
+0	Camilo Henriquez	Gran Concepción	Concepción
+0	Fundo El Carmen	Temuco	Temuco
+&quot;,delim=&quot;\t&quot;)
+
+# Setting up the projection
+
+nbarrios &lt;- spTransform(nbarrios, crs)
+
+# Join with the prexistent barrios 
+
+barrios_p &lt;- rbind(nbarrios,barrios_p)
+
+# Adding data frame
+
+barrios_p@data &lt;- as.data.frame(barrios_p@data)
+
+# Setting up the projection
+
+barrios_p &lt;- spTransform(barrios_p,CRS(&quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +towgs84=0,0,0&quot;))
+
+# Writing file with the barrio shapes
+
+write_rds(barrios_p,&quot;barrios_pil.RDS&quot;)
+
+rm(list=ls())
+</code></pre>
+
+<p>Second, the census buffer is created.</p>
+
+<pre><code>library(tidyverse)
+library(rgdal)
+library(rgeos)
+library(sp)
+library(maptools)
+library(spdplyr)
+
+#Loading barrios shape
+
+barrios_p&lt;-read_rds(&quot;barrios_pil.RDS&quot;)
+
+# Ciudades Cedeus
+
+sa &lt;- readOGR(&quot;Mapa Manzanas sin CODSII (geometría buena) - Cartografia Precenso 2011 - Público/Carto_Region_13.gdb/&quot;,&quot;MANZANA&quot;)
+sd &lt;- readOGR(&quot;Mapa Manzanas sin CODSII (geometría buena) - Cartografia Precenso 2011 - Público/Carto_Region_14.gdb/&quot;,&quot;MANZANA&quot;)
+fg &lt;- readOGR(&quot;Mapa Manzanas sin CODSII (geometría buena) - Cartografia Precenso 2011 - Público/Carto_Region_4.gdb/&quot;,&quot;MANZANA&quot;)
+ff &lt;- readOGR(&quot;Mapa Manzanas sin CODSII (geometría buena) - Cartografia Precenso 2011 - Público/Carto_Region_3.gdb/&quot;,&quot;MANZANA&quot;)
+kr &lt;- readOGR(&quot;Mapa Manzanas sin CODSII (geometría buena) - Cartografia Precenso 2011 - Público/Carto_Region_9.gdb/&quot;,&quot;MANZANA&quot;)
+pq &lt;- readOGR(&quot;Mapa Manzanas sin CODSII (geometría buena) - Cartografia Precenso 2011 - Público/Carto_Region_8.gdb/&quot;,&quot;MANZANA&quot;)
+
+# Joining shapes
+
+barrios_m &lt;- rbind(sa,sd,fg,ff,kr,pq)
+
+# Establishing projection
+
+crs &lt;- CRS(&quot;+init=epsg:32719&quot;) # Projeccion
+
+barrios_p &lt;- spTransform(barrios_p, crs) 
+barrios_m &lt;- spTransform(barrios_m, crs)
+
+# Creating buffer
+
+buffer &lt;- gBuffer(barrios_p, width=1000, byid=TRUE,capStyle=&quot;FLAT&quot;)
+
+# Cutting
+
+buffer &lt;- over(buffer,barrios_m,returnList=TRUE)
+
+barrios_list &lt;- as.list(barrios_p@data$BARRIO)
+
+barrios &lt;- mapply(function(x) barrios_m[as.numeric(rownames(x)),], buffer)
+barrios &lt;- mapply(cbind, barrios, barrios_list, SIMPLIFY=F)
+barrios &lt;- lapply(barrios, setNames, c(&quot;CUT&quot;, &quot;AREA_C&quot;, &quot;MANZENT&quot;, &quot;DISTRITO&quot;, &quot;ZONA&quot;, &quot;MANZANA&quot;, &quot;SHAPE_Length&quot;, &quot;SHAPE_Area&quot;, &quot;BARRIO&quot;))
+barrios &lt;- do.call(rbind, barrios)
+
+# Setting up the projection
+
+barrios &lt;- spTransform(barrios,CRS(&quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +towgs84=0,0,0&quot;))
+
+# Writing barrio's buffer with census manzanas
+
+write_rds(barrios,&quot;barrios_merged.RDS&quot;)
+</code></pre>
+
+<p>Third, the manzanas related to the barrio itself are extracted.</p>
+
+<pre><code>library(tidyverse)
+library(rgdal)
+library(rgeos)
+library(sp)
+library(maptools)
+library(spdplyr)
+
+# Reading last shapes
+
+barrios_p&lt;-read_rds(&quot;barrios_pil.RDS&quot;)
+barrios_m&lt;-read_rds(&quot;barrios_merged.RDS&quot;)
+
+# Intersection
+
+manzbarr &lt;- over(barrios_p,barrios_m,returnList=TRUE)
+
+# Joining
+
+manzbarr &lt;- do.call(rbind, manzbarr)
+
+manzbarr&lt;-left_join(barrios_p@data,manzbarr,by=c(&quot;BARRIO&quot;))
+
+# Writing census manzanas inside barrio polygon 
+
+write_rds(manzbarr,&quot;Manzanasbarriospiloto.RDS&quot;)
+</code></pre>
+
+
+
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+	<div class="sphinxsidebarwrapper">
+		<p class="logo">
+			<a href="/">
+				<img class="logo" src="/favicon-96x96.png" alt="Logo"/>
+				<h1 class="logo logo-name">Barrios Sustentables</h1>
+			</a>
+		</p>
+		
+		<p class="blurb">CEDEUS neighborhood statistics project</p>
+
+		
+
+	
+
+	
+
+	
+		
+
+		
+
+<h3>Navigation</h3>
+<ul>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/getting-started/">Getting Started</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/using-shiny-server/using-shiny-server/">Using Shiny Server</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/application-internals/application-internals/">Application Internals</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/how-the-app-works/how-the-application-works/">How the app works</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/indicators/indicators/">Indicators</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/barrios/barrios/">Barrios</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/">Foreword</a>
+	</li>
+	
+</ul>
+
+
+		
+
+	</div>
+</div>
+<div class="clearer"></div>
+</div>
+			<div class="footer">
+	&copy; 2017 <a href="https://www.cedeus.cl">CEDEUS</a>
+	
+</div>
+
+
+
+
+			
+
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+			<script>hljs.initHighlightingOnLoad();</script>
+			
+
+			
+		</div>
+	</body>
+</html>

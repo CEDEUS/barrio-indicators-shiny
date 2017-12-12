@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head lang="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+	<meta name="description" content="CEDEUS neighborhood statistics project">
+	<meta name="generator" content="Hugo 0.31.1" />
+	
+	<title>Application Internals &mdash; Barrios Sustentables</title>
+	
+	<link rel="stylesheet" href="/css/alabaster.css" type="text/css" />
+	<link rel="stylesheet" href="/css/highlight.css" type="text/css" />
+
+	
+
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+</head>
+
+	<body role="document">
+		<div class="document">
+			<div class="documentwrapper">
+				<div class="bodywrapper">
+					<div class="body" role="main">
+						
+	<h1>Application Internals</h1>
+	
+	
+
+<h2 id="directory-structure">Directory structure</h2>
+
+<p>The application have a data directory what contains for every indicator a RDS file. I have some special files too <code>Manzanasbarriospiloto.RDS</code>, <code>barrios_merged.RDS</code> and <code>barrios_pil.RDS</code> what are gonna be explained in the next section. The <code>ui.R</code> and the <code>server.R</code> files are the core of this application, the first is related, as the name says, the user interface and the second contains all the functions to make everything dynamic.</p>
+
+<pre><code>rsalas@basicubuntu1404forr:/srv/shiny-server/barriossust$ tree
+.
+├── Data
+│   ├── aav.RDS
+│   ├── accesibility_score_final_15.RDS
+│   ├── accesibility_score_final.RDS
+│   ├── accesotecnologia.RDS
+│   ├── anoconstruccion_max.RDS
+│   ├── anoconstruccion_min.RDS
+│   ├── anoconstruccion.RDS
+│   ├── barrios_merged.RDS
+│   ├── barrios_pil.RDS
+│   ├── empleabilidadmismacomuna.RDS
+│   ├── Manzanasbarriospiloto.RDS
+│   ├── materialidad.RDS
+│   ├── mujerestrabajando.RDS
+│   ├── numerodepersonas.RDS
+│   ├── valuesii.RDS
+│   └── vehiculos.RDS
+├── description.md
+├── helpers.R
+├── server.R
+├── Shiny_Indicadores.Rproj
+└── ui.R
+
+1 directory, 21 files
+</code></pre>
+
+<h2 id="special-data-files">Special data files</h2>
+
+<p>They are special because contains the polygons of the barrios. In the next table I&rsquo;ll explain this better.</p>
+
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th>Contains</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Manzanasbarriospiloto.RDS</td>
+<td>All the census manzanas related to the barrio itself and their codes</td>
+</tr>
+
+<tr>
+<td>barrios_pil.RDS</td>
+<td>The barrio polygon</td>
+</tr>
+
+<tr>
+<td>barrios_merged.RDS</td>
+<td>The buffer around the barrio polygons with the census manzanas</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="indicators">Indicators</h2>
+
+<p>Currently I have 12 indicators builded and running on the visualization.</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Large name</th>
+<th>Codename</th>
+<th>Path</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>% Empleados en la misma comuna</td>
+<td>empl</td>
+<td>Data/empleabilidadmismacomuna.RDS</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>% Viviendas de buena calidad</td>
+<td>matr</td>
+<td>Data/materialidad.RDS</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>% Mujeres trabajando</td>
+<td>mujt</td>
+<td>Data/mujerestrabajando.RDS</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>% Acceso a tecnologias de la información</td>
+<td>acte</td>
+<td>Data/accesotecnologia.RDS</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>Cercanía a Areas Verdes</td>
+<td>aav</td>
+<td>Data/aav.RDS</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>Caminabilidad a servicios urbanos - 10 min - 1.25 m/s</td>
+<td>acc</td>
+<td>Data/accesibility_score_final.RDS</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>Caminabilidad a servicios urbanos - 15 min - 1.38 m/s</td>
+<td>acc2</td>
+<td>Data/accesibility_score_final_15.RDS</td>
+</tr>
+
+<tr>
+<td>8</td>
+<td>Mediana de años de construcción (Año mínimo)</td>
+<td>acntrmin</td>
+<td>Data/anoconstruccion_min.RDS</td>
+</tr>
+
+<tr>
+<td>9</td>
+<td>Mediana de años de construcción (Año máximo)</td>
+<td>acntrmax</td>
+<td>Data/anoconstruccion_max.RDS</td>
+</tr>
+
+<tr>
+<td>10</td>
+<td>Presencia de vehiculos</td>
+<td>vehiculos</td>
+<td>Data/vehiculos.RDS</td>
+</tr>
+
+<tr>
+<td>11</td>
+<td>Avaluo</td>
+<td>avaluo</td>
+<td>Data/valuesii.RDS</td>
+</tr>
+
+<tr>
+<td>12</td>
+<td>Personas</td>
+<td>personas</td>
+<td>Data/numerodepersonas.RDS</td>
+</tr>
+</tbody>
+</table>
+
+
+
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+	<div class="sphinxsidebarwrapper">
+		<p class="logo">
+			<a href="/">
+				<img class="logo" src="/favicon-96x96.png" alt="Logo"/>
+				<h1 class="logo logo-name">Barrios Sustentables</h1>
+			</a>
+		</p>
+		
+		<p class="blurb">CEDEUS neighborhood statistics project</p>
+
+		
+
+	
+
+	
+
+	
+		
+
+		
+
+<h3>Navigation</h3>
+<ul>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/getting-started/">Getting Started</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/using-shiny-server/using-shiny-server/">Using Shiny Server</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/application-internals/application-internals/">Application Internals</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/how-the-app-works/how-the-application-works/">How the app works</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/indicators/indicators/">Indicators</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/barrios/barrios/">Barrios</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/">Foreword</a>
+	</li>
+	
+</ul>
+
+
+		
+
+	</div>
+</div>
+<div class="clearer"></div>
+</div>
+			<div class="footer">
+	&copy; 2017 <a href="https://www.cedeus.cl">CEDEUS</a>
+	
+</div>
+
+
+
+
+			
+
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+			<script>hljs.initHighlightingOnLoad();</script>
+			
+
+			
+		</div>
+	</body>
+</html>

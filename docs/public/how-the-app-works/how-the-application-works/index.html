@@ -1,0 +1,382 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head lang="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+	<meta name="description" content="CEDEUS neighborhood statistics project">
+	<meta name="generator" content="Hugo 0.31.1" />
+	
+	<title>How the app works &mdash; Barrios Sustentables</title>
+	
+	<link rel="stylesheet" href="/css/alabaster.css" type="text/css" />
+	<link rel="stylesheet" href="/css/highlight.css" type="text/css" />
+
+	
+
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+</head>
+
+	<body role="document">
+		<div class="document">
+			<div class="documentwrapper">
+				<div class="bodywrapper">
+					<div class="body" role="main">
+						
+	<h1>How the app works</h1>
+	
+	
+
+<h2 id="1-loading-databases">1 - Loading databases</h2>
+
+<p>The first section of the app before the initialization of the server load the databases</p>
+
+<pre><code>#Loading required databases
+
+barrios_m &lt;- readRDS(&quot;Data/barrios_merged.RDS&quot;)
+barrios_p &lt;- readRDS(&quot;Data/barrios_pil.RDS&quot;)
+
+manzbarr &lt;- readRDS(&quot;Data/Manzanasbarriospiloto.RDS&quot;)
+
+empl &lt;- readRDS(&quot;Data/empleabilidadmismacomuna.RDS&quot;)
+matr &lt;- readRDS(&quot;Data/materialidad.RDS&quot;)
+mujt &lt;- readRDS(&quot;Data/mujerestrabajando.RDS&quot;)
+acte &lt;- readRDS(&quot;Data/accesotecnologia.RDS&quot;)
+aav &lt;- readRDS(&quot;Data/aav.RDS&quot;)
+acc &lt;- readRDS(&quot;Data/accesibility_score_final.RDS&quot;)
+acc2 &lt;- readRDS(&quot;Data/accesibility_score_final_15.RDS&quot;)
+acntrmin &lt;- readRDS(&quot;Data/anoconstruccion_min.RDS&quot;)
+acntrmax &lt;- readRDS(&quot;Data/anoconstruccion_max.RDS&quot;)
+vehiculos &lt;- readRDS(&quot;Data/vehiculos.RDS&quot;)
+avaluo &lt;- readRDS(&quot;Data/valuesii.RDS&quot;)
+personas &lt;- readRDS(&quot;Data/numerodepersonas.RDS&quot;)
+</code></pre>
+
+<h2 id="2-fixing-encoding">2 - Fixing encoding</h2>
+
+<p>Then the encoding is fixed using an small function</p>
+
+<pre><code>fix.encoding &lt;- function(df, originalEncoding = &quot;UTF-8&quot;) {
+  numCols &lt;- ncol(df)
+  df &lt;- data.frame(df)
+  for (col in 1:numCols)
+  {
+    if(class(df[, col]) == &quot;character&quot;){
+      Encoding(df[, col]) &lt;- originalEncoding
+    }
+    
+    if(class(df[, col]) == &quot;factor&quot;){
+      Encoding(levels(df[, col])) &lt;- originalEncoding
+    }
+  }
+  return(as_data_frame(df))
+}
+
+barrios_m@data &lt;- fix.encoding(barrios_m@data)
+barrios_p@data &lt;- fix.encoding(barrios_p@data)
+
+manzbarr &lt;- fix.encoding(manzbarr)
+
+empl &lt;- fix.encoding(empl)
+matr &lt;- fix.encoding(matr)
+mujt &lt;- fix.encoding(mujt)
+acte &lt;- fix.encoding(acte)
+aav &lt;- fix.encoding(aav)
+acc &lt;- fix.encoding(acc)
+acc2 &lt;- fix.encoding(acc2)
+acntrmin &lt;- fix.encoding(acntrmin)
+acntrmax &lt;- fix.encoding(acntrmax)
+personas &lt;- fix.encoding(personas)
+</code></pre>
+
+<h2 id="3-inside-the-shiny-app-creating-ui-elements">3 - Inside the Shiny app, creating UI elements</h2>
+
+<p>The second part of the app starts inside the shiny function before <code>function(input, output, session) { ... }</code> creating some UI elements called dropdowns to change the city, barrio and selected variable.</p>
+
+<pre><code>  output$Ciudad &lt;- renderUI({
+    ciudadesList &lt;- unique(barrios_p@data$CIUDAD)
+    selectInput(&quot;CiudadSelection&quot;, &quot;Ciudad&quot;, choices = ciudadesList, selected = ciudadesList[1])
+  })
+  
+  output$Barrio &lt;- renderUI({
+    req(input$CiudadSelection)
+    filtered &lt;- filter(barrios_p@data, CIUDAD == input$CiudadSelection)
+    routeNums &lt;- filtered$BARRIO
+    selectInput(&quot;BarrioSelection&quot;, &quot;Barrio&quot;, choices = routeNums, selected = routeNums[1])
+  })
+  
+  output$Variable &lt;- renderUI({
+    options &lt;- c(&quot;% Viviendas de buena calidad&quot;,
+                 &quot;% Mujeres trabajando&quot;,
+                 &quot;% Empleados en la misma comuna&quot;,
+                 &quot;% Acceso a tecnologias de la información&quot;,
+                 &quot;Cercanía a Areas Verdes&quot;,&quot;Caminabilidad a servicios urbanos - 10 min - 1.25 m/s&quot;,
+                 &quot;Caminabilidad a servicios urbanos - 15 min - 1.38 m/s&quot;,
+                 &quot;Mediana de años de construcción (Año mínimo)&quot;,
+                 &quot;Mediana de años de construcción (Año máximo)&quot;,
+                 &quot;Presencia de vehiculos&quot;,
+                 &quot;Avaluo&quot;,
+                 &quot;Personas&quot;
+                 )
+    selectInput(&quot;VarU&quot;, &quot;Variable&quot;, choices = options, selected = options[1])
+  })
+  
+</code></pre>
+
+<h2 id="4-creating-the-observer">4 - Creating the observer</h2>
+
+<p>The element called <em>observeEvent</em>  <code>observeEvent({c(input$VarU,input$BarrioSelection)},{ ... })</code> continuously checks for the values of the dropdowns  <em>input$VarU</em> and <em>input$BarrioSelection</em> so if a change on them ocurrs the value is updated on the entire app. The trick to prevent early loading of the values is the function <em>req()</em> what waits for the values <em>because one depends of another</em>.</p>
+
+<pre><code>    req(input$VarU)
+    req(input$BarrioSelection)
+</code></pre>
+
+<h2 id="5-the-hidden-data-frame">5 - The hidden data.frame</h2>
+
+<p>This small database asigns the <em>big name</em> of every indicator with their correspondent database and specify a legend type.</p>
+
+<pre><code>    VarList &lt;- data.frame(var=c(&quot;% Viviendas de buena calidad&quot;,
+                                &quot;% Mujeres trabajando&quot;,
+                                &quot;% Empleados en la misma comuna&quot;,
+                                &quot;% Acceso a tecnologias de la información&quot;,
+                                &quot;Cercanía a Areas Verdes&quot;,
+                                &quot;Caminabilidad a servicios urbanos - 10 min - 1.25 m/s&quot;,
+                                &quot;Caminabilidad a servicios urbanos - 15 min - 1.38 m/s&quot;,
+                                &quot;Mediana de años de construcción (Año mínimo)&quot;,
+                                &quot;Mediana de años de construcción (Año máximo)&quot;,
+                                &quot;Presencia de vehiculos&quot;,
+                                &quot;Avaluo&quot;,
+                                &quot;Personas&quot;),
+                          db=c(&quot;matr&quot;,&quot;mujt&quot;,&quot;empl&quot;,&quot;acte&quot;,&quot;aav&quot;,&quot;acc&quot;,&quot;acc2&quot;,&quot;acntrmin&quot;,&quot;acntrmax&quot;,&quot;vehiculos&quot;,&quot;avaluo&quot;,&quot;personas&quot;),
+                          legend=c(1,1,1,1,2,1,1,3,3,1,4,5))
+</code></pre>
+
+<h2 id="6-database-loading-and-starting-the-calculations">6 - Database loading and starting the calculations</h2>
+
+<p>The <em>db</em> variable dynamically get the correct database based on the dropdown selection and loads it. The following conditional fuction discriminate between variables with barrios and manzana and variables only with their manzanas values using their number of rows. Once we have everything on board two joins are created one for the barrios manzanas and another for the entire buffer. Then the calculations of the means, variance and units for the barrio and the buffer are calculated and exposed in the UI using small boxes called <em>valueBox</em></p>
+
+<pre><code>    db &lt;- eval(as.name(as.character(VarList[match(input$VarU,VarList$var),]$db)))
+    
+    if(suppressWarnings(nrow(db[db$d==input$BarrioSelection,]))&gt;0){
+      data &lt;- db[db$d==input$BarrioSelection,] %&gt;% mutate(MANZENT=ID_W)
+    } else {
+      data &lt;- db %&gt;% mutate(MANZENT=ID_W)
+    }
+    
+    shape &lt;&lt;- sp::merge(barrios_m,data,by=&quot;MANZENT&quot;)
+    shape_barr &lt;- base::merge(manzbarr,data,by=&quot;MANZENT&quot;)
+    
+    meanbarrio &lt;- round(mean(subset(shape,BARRIO == input$BarrioSelection)$listo,na.rm=T),2)
+    meansmall &lt;- round(mean(subset(shape_barr,BARRIO == input$BarrioSelection)$listo,na.rm=T),2)
+    
+    variancebarrio &lt;- round(sd(subset(shape,BARRIO == input$BarrioSelection)$listo,na.rm=T),2)
+    variancesmall &lt;- round(sd(subset(shape_barr,BARRIO == input$BarrioSelection)$listo,na.rm=T),2)
+    
+    unitscounterbarrio &lt;- length(subset(shape,BARRIO == input$BarrioSelection)$listo)
+    unitscountersmall &lt;- length(subset(shape_barr,BARRIO == input$BarrioSelection)$listo)
+    
+    output$unitsBox &lt;- renderValueBox({
+      valueBox(
+        paste(unitscountersmall,&quot;/&quot;,unitscounterbarrio,sep=&quot; &quot;), &quot;Unidades (Barrio/Buffer)&quot;,
+        color = &quot;purple&quot;
+      )})
+    
+    output$meanBox &lt;- renderValueBox({
+      valueBox(
+        paste(meansmall,&quot;/&quot;,meanbarrio,sep=&quot; &quot;), &quot;Promedio (Barrio/Buffer)&quot;,
+        color = &quot;purple&quot;
+      )})
+    
+    output$varianceBox &lt;- renderValueBox({
+      valueBox(
+        paste(variancesmall,&quot;/&quot;,variancebarrio,sep=&quot; &quot;), &quot;Desviación Estándar (Barrio/Buffer)&quot;,
+        color = &quot;purple&quot;
+      )})
+</code></pre>
+
+<h2 id="7-the-map">7 - The map</h2>
+
+<p>Inside <code>renderLeaflet({ ... })</code> the map is created. First, Leaflet gets a polygon subsetted by the barrio selected then add tiles from Mapbox and then a attribution creating the base map. Second, a popup is created to get every value of the manzana units on click over them. Third, four color palettes based on viridis are created to reflect the values of the correspondent indicator.  Fourth, the <em>datamap</em> variable is created to store the current barrio selected, then a proxy updates the values of the map without reloading conditionally by the legend value, so we can have different elements by indicator.</p>
+
+<pre><code>      leaflet(filter(shape,BARRIO == input$BarrioSelection)) %&gt;% 
+        addTiles(urlTemplate = &quot;https://api.mapbox.com/styles/v1/robsalasco/cizaf21t600762rmu7spm9p06/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoicm9ic2FsYXNjbyIsImEiOiJjaWcxbzh1bjAxMHhodXdsdnczZ28xOHc1In0.WkFivOlHKIMwx30ssZorBw&quot;,attribution = 'Mapa por &lt;a href=&quot;http://www.mapbox.com/&quot;&gt;Mapbox&lt;/a&gt; | Aplicación por &lt;a href=&quot;mailto:rosalas@uc.cl&quot;&gt;Roberto Salas&lt;/a&gt;') 
+    })
+    
+    state_popup &lt;- paste0(round(subset(shape,BARRIO == input$BarrioSelection)$listo,2),sep=&quot;&quot;)
+    
+    palette &lt;- colorBin(viridis_pal()(11), 
+                        bins = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100), na.color = &quot;#FFFFFF00&quot;)
+    
+    palette.contru &lt;- colorBin(viridis_pal()(11), 
+                                bins = c(0, 1920.0, 1940.0,1950.0, 1960.0, 1970.0, 1980.0, 1990.0, 2000.0, 2010.0, 2020.0),na.color = &quot;#FFFFFF00&quot;)
+    palette.avaluo &lt;- colorBin(viridis_pal()(11), 
+                               bins = cbreaks(c(min(subset(shape,BARRIO == input$BarrioSelection)$listo,na.rm = T), max(subset(shape,BARRIO == input$BarrioSelection)$listo,na.rm = T)), pretty_breaks(9))$breaks, na.color = &quot;#FFFFFF00&quot;)
+    
+    palette.personas &lt;- colorBin(viridis_pal()(11), 
+                               bins = cbreaks(c(min(subset(shape,BARRIO == input$BarrioSelection)$listo,na.rm = T), max(subset(shape,BARRIO == input$BarrioSelection)$listo,na.rm = T)), pretty_breaks(9))$breaks, na.color = &quot;#FFFFFF00&quot;)
+    
+    
+    datamap &lt;- filter(shape,BARRIO == input$BarrioSelection)
+    proxy &lt;- leafletProxy(&quot;busmap&quot;,data=datamap)
+    proxy %&gt;% clearControls()
+    if (VarList[match(input$VarU,VarList$var),]$legend == 1)
+    {proxy %&gt;% fitBounds(lng1 = bbox(datamap)[[3]],lat1 = bbox(datamap)[[4]], lng2 = bbox(datamap)[[1]],lat2 = bbox(datamap)[[2]]) %&gt;%
+        addPolygons(weight = 0.5,
+                    color = '#444444',
+                    fillOpacity = 1,
+                    fillColor = ~palette(listo),
+                    popup = state_popup,stroke = TRUE, group = &quot;Variable&quot;) %&gt;% 
+        addPolygons(data = barrios_p %&gt;% filter(BARRIO == input$BarrioSelection),
+                    weight = 4, color = 'red', fillOpacity = 0, fillColor = '#000000', group = &quot;Poligono&quot;) %&gt;% addLegend(&quot;bottomright&quot;, pal = palette, values = ~listo,
+                                  title = &quot;&quot;,
+                                  labFormat = labelFormat(suffix = &quot;%&quot;),
+                                  opacity = 1) %&gt;% 
+        addLayersControl(overlayGroups = c(&quot;Variable&quot;, &quot;Poligono&quot;),
+                         options = layersControlOptions(collapsed = T))
+    } 
+    else if (VarList[match(input$VarU,VarList$var),]$legend == 2)
+    {proxy %&gt;% fitBounds(lng1 = bbox(datamap)[[3]],lat1 = bbox(datamap)[[4]], lng2 = bbox(datamap)[[1]],lat2 = bbox(datamap)[[2]]) %&gt;% 
+        addPolygons(weight = 0.5,
+                    color = '#444444',
+                    fillOpacity = 1,
+                    fillColor = ~palette(listo),
+                    popup = state_popup,stroke = TRUE, group = &quot;Variable&quot;) %&gt;% 
+        addPolygons(data = barrios_p %&gt;% filter(BARRIO == input$BarrioSelection),
+                    weight = 4, color = 'red', fillOpacity = 0, fillColor = '#000000', group = &quot;Poligono&quot;) %&gt;% addLegend(&quot;bottomright&quot;, colors = viridis_pal()(2), values = ~listo,
+                         title = &quot;&quot;,
+                         labels= c(&quot;No&quot;,&quot;Si&quot;),
+                         opacity = 1) %&gt;% 
+        addLayersControl(overlayGroups = c(&quot;Variable&quot;, &quot;Poligono&quot;),
+                         options = layersControlOptions(collapsed = T))
+      } 
+    else if (VarList[match(input$VarU,VarList$var),]$legend == 3)
+    {proxy %&gt;% fitBounds(lng1 = bbox(datamap)[[3]],lat1 = bbox(datamap)[[4]], lng2 = bbox(datamap)[[1]],lat2 = bbox(datamap)[[2]]) %&gt;%
+        addPolygons(weight = 0.5,
+                    color = '#444444',
+                    fillOpacity = 1,
+                    fillColor = ~palette.contru(listo),
+                    popup = state_popup,stroke = TRUE, group = &quot;Variable&quot;) %&gt;% 
+        addPolygons(data = barrios_p %&gt;% filter(BARRIO == input$BarrioSelection),
+                    weight = 4, color = 'red', fillOpacity = 0, fillColor = '#000000', group = &quot;Poligono&quot;) %&gt;% addLegend(&quot;bottomright&quot;, pal = palette.contru, values = ~listo,
+                         title = &quot;&quot;,
+                         opacity = 1) %&gt;% 
+        addLayersControl(overlayGroups = c(&quot;Variable&quot;, &quot;Poligono&quot;),
+                         options = layersControlOptions(collapsed = T))
+    }
+    else if (VarList[match(input$VarU,VarList$var),]$legend == 4)
+    {proxy %&gt;% fitBounds(lng1 = bbox(datamap)[[3]],lat1 = bbox(datamap)[[4]], lng2 = bbox(datamap)[[1]],lat2 = bbox(datamap)[[2]]) %&gt;%
+        addPolygons(weight = 0.5,
+                    color = '#444444',
+                    fillOpacity = 1,
+                    fillColor = ~palette.avaluo(listo),
+                    popup = state_popup,stroke = TRUE, group = &quot;Variable&quot;) %&gt;% 
+        addPolygons(data = barrios_p %&gt;% filter(BARRIO == input$BarrioSelection),
+                    weight = 4, color = 'red', fillOpacity = 0, fillColor = '#000000', group = &quot;Poligono&quot;) %&gt;% addLegend(&quot;bottomright&quot;, pal = palette.avaluo, values = ~listo,
+                                                                                                                         title = &quot;&quot;,
+                                                                                                                         opacity = 1) %&gt;% 
+        addLayersControl(overlayGroups = c(&quot;Variable&quot;, &quot;Poligono&quot;),
+                         options = layersControlOptions(collapsed = T))
+    }
+    else if (VarList[match(input$VarU,VarList$var),]$legend == 5)
+    {proxy %&gt;% fitBounds(lng1 = bbox(datamap)[[3]],lat1 = bbox(datamap)[[4]], lng2 = bbox(datamap)[[1]],lat2 = bbox(datamap)[[2]]) %&gt;%
+        addPolygons(weight = 0.5,
+                    color = '#444444',
+                    fillOpacity = 1,
+                    fillColor = ~palette.personas(listo),
+                    popup = state_popup,stroke = TRUE, group = &quot;Variable&quot;) %&gt;% 
+        addPolygons(data = barrios_p %&gt;% filter(BARRIO == input$BarrioSelection),
+                    weight = 4, color = 'red', fillOpacity = 0, fillColor = '#000000', group = &quot;Poligono&quot;) %&gt;% addLegend(&quot;bottomright&quot;, pal = palette.personas, values = ~listo,
+                                                                                                                         title = &quot;&quot;,
+                                                                                                                         opacity = 1) %&gt;% 
+        addLayersControl(overlayGroups = c(&quot;Variable&quot;, &quot;Poligono&quot;),
+                         options = layersControlOptions(collapsed = T))
+    }
+</code></pre>
+
+
+
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+	<div class="sphinxsidebarwrapper">
+		<p class="logo">
+			<a href="/">
+				<img class="logo" src="/favicon-96x96.png" alt="Logo"/>
+				<h1 class="logo logo-name">Barrios Sustentables</h1>
+			</a>
+		</p>
+		
+		<p class="blurb">CEDEUS neighborhood statistics project</p>
+
+		
+
+	
+
+	
+
+	
+		
+
+		
+
+<h3>Navigation</h3>
+<ul>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/getting-started/">Getting Started</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/using-shiny-server/using-shiny-server/">Using Shiny Server</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/application-internals/application-internals/">Application Internals</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/how-the-app-works/how-the-application-works/">How the app works</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/indicators/indicators/">Indicators</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/barrios/barrios/">Barrios</a>
+	</li>
+	
+	<li class="toctree-l1">
+		<a class="reference internal" href="/">Foreword</a>
+	</li>
+	
+</ul>
+
+
+		
+
+	</div>
+</div>
+<div class="clearer"></div>
+</div>
+			<div class="footer">
+	&copy; 2017 <a href="https://www.cedeus.cl">CEDEUS</a>
+	
+</div>
+
+
+
+
+			
+
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+			<script>hljs.initHighlightingOnLoad();</script>
+			
+
+			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Application-internals on Barrios Sustentables</title>
+    <link>/application-internals/</link>
+    <description>Recent content in Application-internals on Barrios Sustentables</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/application-internals/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Application Internals</title>
+      <link>/application-internals/application-internals/</link>
+      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/application-internals/application-internals/</guid>
+      <description>Directory structure The application have a data directory what contains for every indicator a RDS file. I have some special files too Manzanasbarriospiloto.RDS, barrios_merged.RDS and barrios_pil.RDS what are gonna be explained in the next section. The ui.R and the server.R files are the core of this application, the first is related, as the name says, the user interface and the second contains all the functions to make everything dynamic.</description>
+    </item>
+    
+  </channel>
+</rss>

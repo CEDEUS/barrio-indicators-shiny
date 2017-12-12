@@ -1,0 +1,37 @@
+baseurl = "https://example.org/"
+languageCode = "en-us"
+metadataformat = "yaml"
+title = "Barrios Sustentables"
+theme = "hugo-alabaster-theme"
+
+disqusShortname = ""
+googleAnalytics = ""
+
+[params]
+	name = "Barrios Sustentables"
+	description = "CEDEUS neighborhood statistics project"
+
+	github_user   = "CEDEUS"
+	github_repo   = "barrio-indicators-shiny"
+	github_banner = false
+
+	custom_css = []
+	custom_js  = []
+
+	highlightjs = "css/highlight.css"
+	favicon = "favicon.ico"
+
+[params.sidebar]
+	logo = "favicon-96x96.png"
+
+
+	github_button  = false
+	travis_button  = false
+	codecov_button = false
+	gratipay = ""
+
+	show_relations = false
+
+[params.footer]
+	copyright = "[CEDEUS](https://www.cedeus.cl)"
+	show_powered_by = false

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Indicators on Barrios Sustentables</title>
+    <link>/indicators/</link>
+    <description>Recent content in Indicators on Barrios Sustentables</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/indicators/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Indicators</title>
+      <link>/indicators/indicators/</link>
+      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/indicators/indicators/</guid>
+      <description>A look inside the indicators databases &amp;gt; head(readRDS(&amp;quot;accesibility_score_final_15.RDS&amp;quot;)) ID_W value d 1 9112041001032 36 Barrio Amanecer 2 9101171003040 75 Barrio Amanecer 3 9101171003002 52 Barrio Amanecer 4 9101171001001 54 Barrio Amanecer 5 9101171003028 65 Barrio Amanecer 6 9101171002002 80 Barrio Amanecer     COLUMN DESCRIPTION     ID_W Census code related to manzana   value Score of the indicator   d Barrio&amp;rsquo;s name    How to add a new indicator  First you have to set up a database using the specifications above Then edit the hidden data.</description>
+    </item>
+    
+  </channel>
+</rss>
