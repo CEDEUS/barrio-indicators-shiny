@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Getting-starteds on Barrios Sustentables</title>
-    <link>/getting-started/</link>
+    <link>/barrio-indicators-shiny/getting-started/</link>
     <description>Recent content in Getting-starteds on Barrios Sustentables</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 23 Apr 2016 15:57:19 +0200</lastBuildDate>
     
-	<atom:link href="/getting-started/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/barrio-indicators-shiny/getting-started/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Getting Started</title>
-      <link>/getting-started/</link>
+      <link>/barrio-indicators-shiny/getting-started/</link>
       <pubDate>Sat, 23 Apr 2016 15:57:19 +0200</pubDate>
       
-      <guid>/getting-started/</guid>
+      <guid>/barrio-indicators-shiny/getting-started/</guid>
       <description>Installation Install R and RStudio The first dependency of the project is R because everything is made on it. All the development was done on a unix compatible system so you can expect some inconsistencies if you are gonna use this project on another box.
 # Example using a Ubuntu Trusty box sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 sudo add-apt-repository &#39;deb [arch=amd64,i386] https://cran.rstudio.com/bin/linux/ubuntu trusty/&#39; sudo apt-get update sudo apt-get install r-base sudo apt-get install gdebi-core wget https://download1.</description>
     </item>

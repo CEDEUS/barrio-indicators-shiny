@@ -2,88 +2,88 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Barrios Sustentables</title>
-    <link>/</link>
+    <link>/barrio-indicators-shiny/</link>
     <description>Recent content on Barrios Sustentables</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 23 Apr 2016 15:57:19 +0200</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/barrio-indicators-shiny/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Getting Started</title>
-      <link>/getting-started/</link>
+      <link>/barrio-indicators-shiny/getting-started/</link>
       <pubDate>Sat, 23 Apr 2016 15:57:19 +0200</pubDate>
       
-      <guid>/getting-started/</guid>
+      <guid>/barrio-indicators-shiny/getting-started/</guid>
       <description>Installation Install R and RStudio The first dependency of the project is R because everything is made on it. All the development was done on a unix compatible system so you can expect some inconsistencies if you are gonna use this project on another box.
 # Example using a Ubuntu Trusty box sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 sudo add-apt-repository &#39;deb [arch=amd64,i386] https://cran.rstudio.com/bin/linux/ubuntu trusty/&#39; sudo apt-get update sudo apt-get install r-base sudo apt-get install gdebi-core wget https://download1.</description>
     </item>
     
     <item>
       <title>Using Shiny Server</title>
-      <link>/using-shiny-server/using-shiny-server/</link>
+      <link>/barrio-indicators-shiny/using-shiny-server/using-shiny-server/</link>
       <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>/using-shiny-server/using-shiny-server/</guid>
+      <guid>/barrio-indicators-shiny/using-shiny-server/using-shiny-server/</guid>
       <description>One of the most powerful features in R is the ability to run your app on a 24x7 server. In the following section I&amp;rsquo;ll show you how to configure the Barrios Sustentanbles app on a Debian based environment using the open source version of Shiny Server.
 Server requeriments Shiny and R are a resource hog, that&amp;rsquo;s the reality, so you need a machine with at least 4 gigs for RAM to start this app.</description>
     </item>
     
     <item>
       <title>Application Internals</title>
-      <link>/application-internals/application-internals/</link>
+      <link>/barrio-indicators-shiny/application-internals/application-internals/</link>
       <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>/application-internals/application-internals/</guid>
+      <guid>/barrio-indicators-shiny/application-internals/application-internals/</guid>
       <description>Directory structure The application have a data directory what contains for every indicator a RDS file. I have some special files too Manzanasbarriospiloto.RDS, barrios_merged.RDS and barrios_pil.RDS what are gonna be explained in the next section. The ui.R and the server.R files are the core of this application, the first is related, as the name says, the user interface and the second contains all the functions to make everything dynamic.</description>
     </item>
     
     <item>
       <title>How the app works</title>
-      <link>/how-the-app-works/how-the-application-works/</link>
+      <link>/barrio-indicators-shiny/how-the-app-works/how-the-application-works/</link>
       <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>/how-the-app-works/how-the-application-works/</guid>
+      <guid>/barrio-indicators-shiny/how-the-app-works/how-the-application-works/</guid>
       <description>1 - Loading databases The first section of the app before the initialization of the server load the databases
 #Loading required databases barrios_m &amp;lt;- readRDS(&amp;quot;Data/barrios_merged.RDS&amp;quot;) barrios_p &amp;lt;- readRDS(&amp;quot;Data/barrios_pil.RDS&amp;quot;) manzbarr &amp;lt;- readRDS(&amp;quot;Data/Manzanasbarriospiloto.RDS&amp;quot;) empl &amp;lt;- readRDS(&amp;quot;Data/empleabilidadmismacomuna.RDS&amp;quot;) matr &amp;lt;- readRDS(&amp;quot;Data/materialidad.RDS&amp;quot;) mujt &amp;lt;- readRDS(&amp;quot;Data/mujerestrabajando.RDS&amp;quot;) acte &amp;lt;- readRDS(&amp;quot;Data/accesotecnologia.RDS&amp;quot;) aav &amp;lt;- readRDS(&amp;quot;Data/aav.RDS&amp;quot;) acc &amp;lt;- readRDS(&amp;quot;Data/accesibility_score_final.RDS&amp;quot;) acc2 &amp;lt;- readRDS(&amp;quot;Data/accesibility_score_final_15.RDS&amp;quot;) acntrmin &amp;lt;- readRDS(&amp;quot;Data/anoconstruccion_min.RDS&amp;quot;) acntrmax &amp;lt;- readRDS(&amp;quot;Data/anoconstruccion_max.RDS&amp;quot;) vehiculos &amp;lt;- readRDS(&amp;quot;Data/vehiculos.RDS&amp;quot;) avaluo &amp;lt;- readRDS(&amp;quot;Data/valuesii.RDS&amp;quot;) personas &amp;lt;- readRDS(&amp;quot;Data/numerodepersonas.RDS&amp;quot;)  2 - Fixing encoding Then the encoding is fixed using an small function</description>
     </item>
     
     <item>
       <title>Indicators</title>
-      <link>/indicators/indicators/</link>
+      <link>/barrio-indicators-shiny/indicators/indicators/</link>
       <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>/indicators/indicators/</guid>
+      <guid>/barrio-indicators-shiny/indicators/indicators/</guid>
       <description>A look inside the indicators databases &amp;gt; head(readRDS(&amp;quot;accesibility_score_final_15.RDS&amp;quot;)) ID_W value d 1 9112041001032 36 Barrio Amanecer 2 9101171003040 75 Barrio Amanecer 3 9101171003002 52 Barrio Amanecer 4 9101171001001 54 Barrio Amanecer 5 9101171003028 65 Barrio Amanecer 6 9101171002002 80 Barrio Amanecer     COLUMN DESCRIPTION     ID_W Census code related to manzana   value Score of the indicator   d Barrio&amp;rsquo;s name    How to add a new indicator  First you have to set up a database using the specifications above Then edit the hidden data.</description>
     </item>
     
     <item>
       <title>Barrios</title>
-      <link>/barrios/barrios/</link>
+      <link>/barrio-indicators-shiny/barrios/barrios/</link>
       <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>/barrios/barrios/</guid>
+      <guid>/barrio-indicators-shiny/barrios/barrios/</guid>
       <description>Database Currently we have 32 barrios on 6 cities
    ID BARRIO CIUDAD COMUNA     1 Barrio Amanecer Temuco - Padre Las Casas Temuco   2 Barrio Estación Temuco - Padre Las Casas Temuco   3 Camilo Henriquez Gran Concepción Concepción   4 Fundo El Carmen Temuco - Padre Las Casas Temuco   5 Lomas de San Sebastian Gran Concepción Concepción   6 Villa Los Fundadores Valdivia Valdivia   7 Parque Krahmer Valdivia Valdivia   8 Sector Regional Valdivia Valdivia   9 Barrio Brasil Gran Santiago Santiago   10 Villa Codelco Copiapó Copiapó   11 Tierra Viva Oriente Copiapó Copiapó   12 El Llano Gran Coquimbo Coquimbo   13 Villa Vista Hermosa Gran Coquimbo La Serena   14 Barrio San Miguel Gran Santiago San Miguel   15 Barrio Las Lilas Gran Santiago Providencia   16 Barrio Jardin del Este Gran Santiago Vitacura   17 Barrio Plaza de Maipú Gran Santiago Maipú   18 Barrios Bajos Valdivia Valdivia   19 Guayacán Gran Coquimbo Coquimbo   20 Villa Esperanza Copiapó Copiapó   21 El Faro Parte Alta Gran Coquimbo Coquimbo   22 Juan XXIII Gran Coquimbo La Serena   23 Chorrillos Gran Santiago Independencia   24 Brasilia Gran Santiago San Miguel   25 El Mariscal Gran Santiago Puente Alto   26 U.</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>/about/</link>
+      <link>/barrio-indicators-shiny/about/</link>
       <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
       
-      <guid>/about/</guid>
+      <guid>/barrio-indicators-shiny/about/</guid>
       <description>This is a &amp;ldquo;hello world&amp;rdquo; example website for the blogdown package. The theme was forked from @jrutheiser/hugo-lithium-theme and modified by Yihui Xie.</description>
     </item>
     
     <item>
       <title>Foreword</title>
-      <link>/</link>
+      <link>/barrio-indicators-shiny/</link>
       <pubDate>Sat, 23 Apr 2016 15:21:22 +0200</pubDate>
       
-      <guid>/</guid>
+      <guid>/barrio-indicators-shiny/</guid>
       <description>What is Barrios Sustentables? A visualization for indicators at manzana level for chilean territorial units.
 The following pages will show you the documentation of the project using nice graphs for better understanding.
 Acknowledgements I want to give a big thank you to Stefan Steiniger, Rodrigo Villegas and Cristian Fuentes for their contributions to the project and obviously to CEDEUS to give the funds to mantain everything alive.</description>

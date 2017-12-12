@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Barrios on Barrios Sustentables</title>
-    <link>/barrios/</link>
+    <link>/barrio-indicators-shiny/barrios/</link>
     <description>Recent content in Barrios on Barrios Sustentables</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 11 Dec 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/barrios/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/barrio-indicators-shiny/barrios/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Barrios</title>
-      <link>/barrios/barrios/</link>
+      <link>/barrio-indicators-shiny/barrios/barrios/</link>
       <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>/barrios/barrios/</guid>
+      <guid>/barrio-indicators-shiny/barrios/barrios/</guid>
       <description>Database Currently we have 32 barrios on 6 cities
    ID BARRIO CIUDAD COMUNA     1 Barrio Amanecer Temuco - Padre Las Casas Temuco   2 Barrio Estación Temuco - Padre Las Casas Temuco   3 Camilo Henriquez Gran Concepción Concepción   4 Fundo El Carmen Temuco - Padre Las Casas Temuco   5 Lomas de San Sebastian Gran Concepción Concepción   6 Villa Los Fundadores Valdivia Valdivia   7 Parque Krahmer Valdivia Valdivia   8 Sector Regional Valdivia Valdivia   9 Barrio Brasil Gran Santiago Santiago   10 Villa Codelco Copiapó Copiapó   11 Tierra Viva Oriente Copiapó Copiapó   12 El Llano Gran Coquimbo Coquimbo   13 Villa Vista Hermosa Gran Coquimbo La Serena   14 Barrio San Miguel Gran Santiago San Miguel   15 Barrio Las Lilas Gran Santiago Providencia   16 Barrio Jardin del Este Gran Santiago Vitacura   17 Barrio Plaza de Maipú Gran Santiago Maipú   18 Barrios Bajos Valdivia Valdivia   19 Guayacán Gran Coquimbo Coquimbo   20 Villa Esperanza Copiapó Copiapó   21 El Faro Parte Alta Gran Coquimbo Coquimbo   22 Juan XXIII Gran Coquimbo La Serena   23 Chorrillos Gran Santiago Independencia   24 Brasilia Gran Santiago San Miguel   25 El Mariscal Gran Santiago Puente Alto   26 U.</description>
     </item>
