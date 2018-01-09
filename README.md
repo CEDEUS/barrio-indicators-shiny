@@ -98,7 +98,6 @@ Yes I have one and I'm using it because I'm lazy to externalize the data.frame. 
 
 ## Roadmap
 
-TODO
 
 | ID | DESCRIPTION                                             | ESTIMATED      |
 |----|---------------------------------------------------------|----------------|
@@ -109,5 +108,9 @@ TODO
 | 5  | Add indicator of cars by housing                        | DONE           |
 | 6  | Count houses in every manzana                           | DONE           |
 | 7  | Add dropdown to select location                         | DONE           |
+
+## Extended documentation
+
+http://cedeus.github.io/barrio-indicators-shiny/
 
 
